@@ -1,173 +1,157 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Line to Flower Animation</title>
+<style>
+  body {
+    background: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 100px 20px;
+  }
+  #lineText, #changeText {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  #flowerContainer {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 40px auto;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .petal {
+    width: 50px;
+    height: 90px;
+    border-radius: 50% / 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    opacity: 0;
+    transition: background-color 2s ease;
+  }
+  .petal:nth-child(1) { transform: rotate(0deg) translateY(-55px); }
+  .petal:nth-child(2) { transform: rotate(45deg) translateY(-55px); }
+  .petal:nth-child(3) { transform: rotate(90deg) translateY(-55px); }
+  .petal:nth-child(4) { transform: rotate(135deg) translateY(-55px); }
+  .petal:nth-child(5) { transform: rotate(180deg) translateY(-55px); }
+  .petal:nth-child(6) { transform: rotate(225deg) translateY(-55px); }
+  .petal:nth-child(7) { transform: rotate(270deg) translateY(-55px); }
+  .petal:nth-child(8) { transform: rotate(315deg) translateY(-55px); }
+
+  #center {
+    width: 60px;
+    height: 60px;
+    background: orange;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px #FFA500;
+  }
+
+  /* Cinematic text animation */
+  #changeText {
+    margin-top: 30px;
+    color: #FF4500;
+    font-weight: 700;
+    transform: translateY(30px);
+    transition: opacity 2s ease, transform 2s ease;
+  }
+</style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
-<p class="p1">&lt;title&gt;Line to Flower Animation&lt;/title&gt;</p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 100px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>#lineText, #changeText {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 28px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: opacity 1.5s ease;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>#flowerContainer {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 160px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>height: 160px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin: 40px auto;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: opacity 1s ease;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.petal {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>height: 90px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 50% / 60%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>top: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>left: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform-origin: bottom center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: background-color 2s ease;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.petal:nth-child(1) { transform: rotate(0deg) translateY(-55px); }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.petal:nth-child(2) { transform: rotate(45deg) translateY(-55px); }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.petal:nth-child(3) { transform: rotate(90deg) translateY(-55px); }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.petal:nth-child(4) { transform: rotate(135deg) translateY(-55px); }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.petal:nth-child(5) { transform: rotate(180deg) translateY(-55px); }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.petal:nth-child(6) { transform: rotate(225deg) translateY(-55px); }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.petal:nth-child(7) { transform: rotate(270deg) translateY(-55px); }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.petal:nth-child(8) { transform: rotate(315deg) translateY(-55px); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>#center {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 60px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>height: 60px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: orange;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>top: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>left: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform: translate(-50%, -50%);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow: 0 0 15px #FFA500;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>/* Cinematic text animation */</p>
-<p class="p1"><span class="Apple-converted-space">  </span>#changeText {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #FF4500;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform: translateY(30px);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: opacity 2s ease, transform 2s ease;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div id="lineText"&gt;A line to come&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div id="flowerContainer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="petal" id="petal1"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="petal" id="petal2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="petal" id="petal3"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="petal" id="petal4"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="petal" id="petal5"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="petal" id="petal6"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="petal" id="petal7"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="petal" id="petal8"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="center"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div id="changeText"&gt;Change is coming&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const lineText = document.getElementById('lineText');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const flowerContainer = document.getElementById('flowerContainer');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const petals = [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('petal1'),</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('petal2'),</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('petal3'),</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('petal4'),</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('petal5'),</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('petal6'),</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('petal7'),</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('petal8'),</p>
-<p class="p1"><span class="Apple-converted-space">  </span>];</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const center = document.getElementById('center');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const changeText = document.getElementById('changeText');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// Step 1: Show the line text</p>
-<p class="p1"><span class="Apple-converted-space">  </span>lineText.style.opacity = 1;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// Colors for petals (cycling orange, purple, blue)</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const colors = ['orange', 'purple', 'blue', 'orange', 'purple', 'blue', 'orange', 'purple'];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// Show petals one by one with colors, then turn all orange</p>
-<p class="p1"><span class="Apple-converted-space">  </span>function showPetalsSequentially(index = 0) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (index &gt;= petals.length) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>// After all petals shown, change all to orange after a delay</p>
-<p class="p1"><span class="Apple-converted-space">      </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>petals.forEach(petal =&gt; petal.style.backgroundColor = 'orange');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>center.style.backgroundColor = 'orange';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Show "Change is coming" text with cinematic effect</p>
-<p class="p1"><span class="Apple-converted-space">        </span>showChangeText();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}, 1500);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Set color and show current petal</p>
-<p class="p1"><span class="Apple-converted-space">    </span>petals[index].style.backgroundColor = colors[index];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>petals[index].style.opacity = 1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Hide the lineText gradually during petals appear</p>
-<p class="p1"><span class="Apple-converted-space">    </span>lineText.style.opacity = Math.max(0, 1 - (index + 1) * 0.15);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Fade out line text fully after 4 petals appear</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (index === 3) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>lineText.style.opacity = 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Show flower container when first petal appears</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (index === 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flowerContainer.style.opacity = 1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Continue with next petal after 400ms</p>
-<p class="p1"><span class="Apple-converted-space">    </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>showPetalsSequentially(index + 1);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}, 400);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function showChangeText() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>changeText.style.opacity = 1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>changeText.style.transform = 'translateY(0)';</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// Start the animation after 2 seconds (show line text fully first)</p>
-<p class="p1"><span class="Apple-converted-space">  </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>showPetalsSequentially();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}, 2000);</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<div id="lineText">A line to come</div>
+
+<div id="flowerContainer">
+  <div class="petal" id="petal1"></div>
+  <div class="petal" id="petal2"></div>
+  <div class="petal" id="petal3"></div>
+  <div class="petal" id="petal4"></div>
+  <div class="petal" id="petal5"></div>
+  <div class="petal" id="petal6"></div>
+  <div class="petal" id="petal7"></div>
+  <div class="petal" id="petal8"></div>
+  <div id="center"></div>
+</div>
+
+<div id="changeText">Change is coming</div>
+
+<script>
+  const lineText = document.getElementById('lineText');
+  const flowerContainer = document.getElementById('flowerContainer');
+  const petals = [
+    document.getElementById('petal1'),
+    document.getElementById('petal2'),
+    document.getElementById('petal3'),
+    document.getElementById('petal4'),
+    document.getElementById('petal5'),
+    document.getElementById('petal6'),
+    document.getElementById('petal7'),
+    document.getElementById('petal8'),
+  ];
+  const center = document.getElementById('center');
+  const changeText = document.getElementById('changeText');
+
+  // Step 1: Show the line text
+  lineText.style.opacity = 1;
+
+  // Colors for petals (cycling orange, purple, blue)
+  const colors = ['orange', 'purple', 'blue', 'orange', 'purple', 'blue', 'orange', 'purple'];
+
+  // Show petals one by one with colors, then turn all orange
+  function showPetalsSequentially(index = 0) {
+    if (index >= petals.length) {
+      // After all petals shown, change all to orange after a delay
+      setTimeout(() => {
+        petals.forEach(petal => petal.style.backgroundColor = 'orange');
+        center.style.backgroundColor = 'orange';
+        // Show "Change is coming" text with cinematic effect
+        showChangeText();
+      }, 1500);
+      return;
+    }
+    // Set color and show current petal
+    petals[index].style.backgroundColor = colors[index];
+    petals[index].style.opacity = 1;
+    // Hide the lineText gradually during petals appear
+    lineText.style.opacity = Math.max(0, 1 - (index + 1) * 0.15);
+
+    // Fade out line text fully after 4 petals appear
+    if (index === 3) {
+      lineText.style.opacity = 0;
+    }
+
+    // Show flower container when first petal appears
+    if (index === 0) {
+      flowerContainer.style.opacity = 1;
+    }
+    // Continue with next petal after 400ms
+    setTimeout(() => {
+      showPetalsSequentially(index + 1);
+    }, 400);
+  }
+
+  function showChangeText() {
+    changeText.style.opacity = 1;
+    changeText.style.transform = 'translateY(0)';
+  }
+
+  // Start the animation after 2 seconds (show line text fully first)
+  setTimeout(() => {
+    showPetalsSequentially();
+  }, 2000);
+
+</script>
+
 </body>
 </html>
